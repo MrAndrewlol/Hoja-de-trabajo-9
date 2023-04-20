@@ -42,11 +42,10 @@ public class PruebasUnitarias {
         String oracion = "La casa";
         String[] words = oracion.split(" ");
         
-        arbolin.add("house,casa,loger");
-        arbolrance.add("loger,house,casa");
-        arbolspan.add("casa,house,loger");
+        arbolin.add("house,casa");
+        arbolspan.add("casa,house");
 
-        assertEquals("*La* *casa* ", asociacoin.traductor(arbolin, arbolspan, arbolin,2 , words));
+        assertEquals("*La* *casa* ", asociacoin.traductor(arbolin, arbolspan,1 , words));
     }
     
 }

@@ -19,9 +19,6 @@ public class Diccionario {
     public static void esperando(int segundo){
         String loading = "Esperando.";
 
-       
-       
-        
         try {
             for (int i = 0; i < 10; i++) {
                 
@@ -61,7 +58,7 @@ public class Diccionario {
       
         arbolbinario arbolspan = new arbolbinario();
         arbolbinario arbolin = new arbolbinario();
-        arbolbinario arbolrance = new arbolbinario();
+
         Assertation<arbolbinario, arbolbinario> asociacoin = new Assertation<>();
         
 
@@ -82,9 +79,9 @@ public class Diccionario {
           String data = myReader.nextLine();
           arbolin.add(data);
           String[] listatarget = data.split(",");
-          String datafra = ""+ listatarget [2] +"," + listatarget [0] +"," + listatarget[1] + "";
-          arbolrance.add(datafra);
-          String dataspa = listatarget[1] +","+ listatarget [0] + ","+ listatarget [2] + "";
+          String datain = ""+ listatarget [0] +"," + listatarget[1] + "";
+          arbolin.add(datain);
+          String dataspa = listatarget[1] +","+ listatarget [0] + "";
           arbolspan.add(dataspa);
         }
         System.out.println(decoration.WHITE_BACKGROUND + "    " + decoration.RESET + " Se llenaron las palabaras del diccionario " +  decoration.WHITE_BACKGROUND + "    " + decoration.RESET);
@@ -119,9 +116,6 @@ public class Diccionario {
               if (arbolin.containsNode(lStrings[k]) == true){
                 contadorin ++;
               }
-              if (arbolrance.containsNode(lStrings[k]) == true){
-                contadorrance ++;
-              }
               if (arbolspan.containsNode(lStrings[k]) == true){
                 contadorspan ++;
               }
@@ -134,7 +128,7 @@ public class Diccionario {
             int opcion = in.nextInt();
             in.nextLine();
             System.out.println(decoration.WHITE + "                   " + decoration.RESET);
-            System.out.println(asociacoin.traductor(arbolin, arbolspan, arbolrance, opcion, lStrings));
+            System.out.println(asociacoin.traductor(arbolin, arbolspan, opcion, lStrings));
  
           }
           myReader.close();
@@ -146,8 +140,6 @@ public class Diccionario {
 
           System.out.println(decoration.BLACK_BRIGHT + "Diccionario en Ingles ordenado" + decoration.RESET);
           arbolin.inorder();
-          System.out.println(decoration.BLUE_UNDERLINED + "\nDiccionario en Frances ordenado" + decoration.RESET);
-          arbolrance.inorder();
           System.out.println(decoration.RED_BRIGHT + "\nDiccionario en Ingles ordenado" + decoration.RESET);
           arbolspan.inorder();
 
