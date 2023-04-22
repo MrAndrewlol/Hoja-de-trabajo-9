@@ -1,13 +1,36 @@
 import structure5.Association;
 
 
+/*
+ * The Author of this  @Andre Jo
+ */
+
+
+
 public class Assertation<K, V> {
+
+    public EstructuraArbol<String> getInstance(int instance) {
+        EstructuraArbol<String> priority = null;
+
+        if (instance == 1){
+            priority = new ArbolRojoNegro<String>();  
+         
+        } else if (instance == 2){
+            priority = new ArbolSplay<String>();
+        }
+        else if (instance == 3){
+            priority = new AVLTree<String>(); // con numeros
+        }
+
+        return priority;
+
+    }
     
-    public String traductor(arbolbinario arbolingles, arbolbinario arbolspan, int opcion, String[] palabras){
-        Association<arbolbinario, arbolbinario>[] classesTaken = new Association[4];
+    public String traductor(EstructuraArbol<String> arbolingles, EstructuraArbol<String> arbolspan, int opcion, String[] palabras){
+        Association<EstructuraArbol<String>, EstructuraArbol<String>>[] classesTaken = new Association[2];
         String Resultado = "";
-        classesTaken[0] = new Association<arbolbinario,arbolbinario>(arbolingles, arbolspan);
-        classesTaken[1] = new Association<arbolbinario,arbolbinario>(arbolspan, arbolingles);
+        classesTaken[0] = new Association<EstructuraArbol<String>,EstructuraArbol<String>>(arbolingles, arbolspan);
+        classesTaken[1] = new Association<EstructuraArbol<String>,EstructuraArbol<String>>(arbolspan, arbolingles);
         
 
 
@@ -36,13 +59,13 @@ public class Assertation<K, V> {
     }
    
 
-    public String traduccions(String[] palabras, Association<arbolbinario,arbolbinario> arbolIdioma, int opcion){
+    public String traduccions(String[] palabras, Association<EstructuraArbol<String>,EstructuraArbol<String>> arbolIdioma, int opcion){
         String traduccion = "";
             for (String palabra : palabras) {
-                if(arbolIdioma.getKey().getNode(palabra).contains("*")){
-                    traduccion = traduccion + arbolIdioma.getKey().getNode(palabra) + " "; 
+                if(arbolIdioma.getKey().get(palabra).contains("*")){
+                    traduccion = traduccion + arbolIdioma.getKey().get(palabra) + " "; 
                 } else {
-                    String word = arbolIdioma.getKey().getNode(palabra);
+                    String word = arbolIdioma.getKey().get(palabra);
                     String[] words = word.split(",");
 
                     traduccion = traduccion + words[opcion] + " ";

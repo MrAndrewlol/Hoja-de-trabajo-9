@@ -2,18 +2,17 @@
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 public class PruebasUnitarias {
-
-    arbolbinario arbolspan = new arbolbinario();
-    arbolbinario arbolin = new arbolbinario();
-    arbolbinario arbolrance = new arbolbinario();
-    Assertation<arbolbinario, arbolbinario> asociacoin = new Assertation<>();
+    
+    Assertation<String, String> asociacoin = new Assertation<>();
+    EstructuraArbol<String> arbol = null;
 
     //Prueba para añadir un elemento
     @Test 
     public void addTest(){
+        arbol = asociacoin.getInstance(1);
         String palabra = "SIUUUU";
-        arbolspan.add(palabra);
-        assertEquals("SIUUUU", arbolspan.getNode(palabra));
+        arbol.add(palabra);
+        assertEquals("SIUUUU", arbol.get(palabra));
     }
 
     //Prueba para buscar un elemento
