@@ -4,6 +4,7 @@
 // Importing input output classes
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.ArrayList;
 import java.util.Scanner; // Import the Scanner class to read text files
 import java.lang.Thread; 
  
@@ -61,8 +62,9 @@ public class Diccionario {
       in.nextLine();
       Assertation<String, String> asociacoin = new Assertation<>();
       EstructuraArbol<String> arbolspan = asociacoin.getInstance(opcion);
-
       EstructuraArbol<String> arbolin = asociacoin.getInstance(opcion);
+      ArrayList<String> arreglos = new ArrayList<String>();
+      ArrayList<String> arreglosspan = new ArrayList<String>();
         
 
 
@@ -81,8 +83,10 @@ public class Diccionario {
         while (myReader.hasNextLine()) {
           String data = myReader.nextLine();
           arbolin.add(data);
+          arreglos.add(data);
           String listas[] = data.split(",");
           arbolspan.add(listas[1] + "," + listas[0]);
+          arreglosspan.add(listas[1] + "," + listas[0]);
          
         }
         System.out.println(decoration.WHITE_BACKGROUND + "    " + decoration.RESET + " Se llenaron las palabaras del diccionario " +  decoration.WHITE_BACKGROUND + "    " + decoration.RESET);
@@ -115,10 +119,11 @@ public class Diccionario {
             System.out.println( decoration.PURPLE_BACKGROUND + "                       Inicio                         " + decoration.RESET);
             System.out.println(decoration.WHITE_BRIGHT + "Bienvenido, por favor seleccionar la opción que desea traducir la oracion del texto" + decoration.RESET); 
             System.out.println(decoration.CYAN_UNDERLINED + "1.Ingles-Español\n2.Español-Ingles" + decoration.RESET );
+            opcion = in.nextInt();
             in.nextLine();
         
             System.out.println(decoration.WHITE + "                   " + decoration.RESET);
-            System.out.println(asociacoin.traductor(arbolin, arbolspan, opcion, lStrings));
+            System.out.println(asociacoin.traductor(arbolin, arbolspan, opcion, lStrings, arreglos, arreglosspan));
  
           }
           myReader.close();

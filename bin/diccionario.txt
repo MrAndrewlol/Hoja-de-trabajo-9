@@ -7,7 +7,7 @@ yes,si
 apple,manzana
 car,coche
 book,libro
-house,casa
+big,grande
 cat,gato
 dog,perro
 chair,silla
