@@ -55,34 +55,35 @@ public class Diccionario {
     }
     
     public static void main(String[] args){ 
-      
-        arbolbinario arbolspan = new arbolbinario();
-        arbolbinario arbolin = new arbolbinario();
+      Scanner in = new Scanner(System.in);
+      System.out.println("Bienvenido por favor seleccionar una opción" + decoration.YELLOW_BRIGHT  + "\n1.Splay Tree \n2.AVL Tree \n3.Red Black Tree" + decoration.RESET);
+      int opcion = in.nextInt();
+      in.nextLine();
+      Assertation<String, String> asociacoin = new Assertation<>();
+      EstructuraArbol<String> arbolspan = asociacoin.getInstance(opcion);
 
-        Assertation<arbolbinario, arbolbinario> asociacoin = new Assertation<>();
+      EstructuraArbol<String> arbolin = asociacoin.getInstance(opcion);
         
 
 
         // Printing the text on console prior adding
         // the desired color
         System.out.println(decoration.YELLOW_BRIGHT + "Ingrese la ruta del archivo ej C:\\ejemplos\\example1.txt" + decoration.RESET);
-        Scanner in = new Scanner(System.in);
         String fpath = in.nextLine();
         Diccionario.esperando(150);
         
         
         
       try {
+        
         File myObj = new File(fpath);
         Scanner myReader = new Scanner(myObj);
         while (myReader.hasNextLine()) {
           String data = myReader.nextLine();
           arbolin.add(data);
-          String[] listatarget = data.split(",");
-          String datain = ""+ listatarget [0] +"," + listatarget[1] + "";
-          arbolin.add(datain);
-          String dataspa = listatarget[1] +","+ listatarget [0] + "";
-          arbolspan.add(dataspa);
+          String listas[] = data.split(",");
+          arbolspan.add(listas[1] + "," + listas[0]);
+         
         }
         System.out.println(decoration.WHITE_BACKGROUND + "    " + decoration.RESET + " Se llenaron las palabaras del diccionario " +  decoration.WHITE_BACKGROUND + "    " + decoration.RESET);
         myReader.close();
@@ -105,43 +106,22 @@ public class Diccionario {
           Scanner myReader = new Scanner(myObj);
           String[] lStrings;
           while (myReader.hasNextLine()) {
-            int contadorspan = 0;
-            int contadorin = 0;
-            int contadorrance = 0;
+
 
             String data = myReader.nextLine();
             //traduccion auto
             lStrings = data.split(" ");
-            for (int k = 0; k < lStrings.length ; k++ ){
-              if (arbolin.containsNode(lStrings[k]) == true){
-                contadorin ++;
-              }
-              if (arbolspan.containsNode(lStrings[k]) == true){
-                contadorspan ++;
-              }
-            }
         
             System.out.println( decoration.PURPLE_BACKGROUND + "                       Inicio                         " + decoration.RESET);
-            System.out.println("Se detecto los siguientes idiomas con su cantidad de palabras en la oracion " + data + ": \nIngles = "+ contadorin + "\nEspañol = " + contadorspan+ "\nFrances = " + contadorrance);
             System.out.println(decoration.WHITE_BRIGHT + "Bienvenido, por favor seleccionar la opción que desea traducir la oracion del texto" + decoration.RESET); 
-            System.out.println(decoration.CYAN_UNDERLINED + "1.Ingles-Español\n2.Ingles-Frances\n3.Español-Ingles\n4.Español-Frances\n5.Frances-Ingles\n6.Frances-Español\n7.No se imprima todas las opciones" + decoration.RESET );
-            int opcion = in.nextInt();
+            System.out.println(decoration.CYAN_UNDERLINED + "1.Ingles-Español\n2.Español-Ingles" + decoration.RESET );
             in.nextLine();
+        
             System.out.println(decoration.WHITE + "                   " + decoration.RESET);
             System.out.println(asociacoin.traductor(arbolin, arbolspan, opcion, lStrings));
  
           }
           myReader.close();
-
-
-          System.out.println("Imprimiendo el diccionario en orden, Pulsa ENTER PARA CONTINUAR ");
-          in.nextLine();
-          Diccionario.esperando(100);
-
-          System.out.println(decoration.BLACK_BRIGHT + "Diccionario en Ingles ordenado" + decoration.RESET);
-          arbolin.inorder();
-          System.out.println(decoration.RED_BRIGHT + "\nDiccionario en Ingles ordenado" + decoration.RESET);
-          arbolspan.inorder();
 
 
 

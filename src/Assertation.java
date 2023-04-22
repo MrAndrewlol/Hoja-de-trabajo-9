@@ -13,65 +13,65 @@ public class Assertation<K, V> {
         EstructuraArbol<String> priority = null;
 
         if (instance == 1){
-            priority = new ArbolRojoNegro<String>();  
+            priority = new ArbolSplay<String>();
          
         } else if (instance == 2){
-            priority = new ArbolSplay<String>();
+         
+            priority = new AVLTree<String>(); // con numeros
         }
         else if (instance == 3){
-            priority = new AVLTree<String>(); // con numeros
+            priority = new ArbolRojoNegro<String>();  
         }
 
         return priority;
 
     }
     
-    public String traductor(EstructuraArbol<String> arbolingles, EstructuraArbol<String> arbolspan, int opcion, String[] palabras){
-        Association<EstructuraArbol<String>, EstructuraArbol<String>>[] classesTaken = new Association[2];
+    public String traductor(EstructuraArbol<String> arbolingles, EstructuraArbol<String> arbolspan,  int opcion, String[] palabras){
+        Association<EstructuraArbol<String>, EstructuraArbol<String>>[] classesTaken = new Association[1];
         String Resultado = "";
         classesTaken[0] = new Association<EstructuraArbol<String>,EstructuraArbol<String>>(arbolingles, arbolspan);
-        classesTaken[1] = new Association<EstructuraArbol<String>,EstructuraArbol<String>>(arbolspan, arbolingles);
-        
-
-
-
-        switch(opcion-1){
-            case 0:{
-                Resultado= traduccions(palabras ,classesTaken[0], 1);// ingles a span
-
-                break;
-            }
-            case 2:{
-                Resultado= traduccions(palabras ,classesTaken[2], 1); //span a ingles
-
-                break;
-            }
-            case 6:{
-                 //span a ingles
-                System.out.println("Spanish a Ingles "+traduccions(palabras ,classesTaken[1], 1));
-                System.out.println("Ingles a Spanish "+traduccions(palabras ,classesTaken[0], 1));
-                
-
-            }
-
-        }
+        Resultado= traduccions(palabras ,classesTaken[0], 1);// ingles a span
         return Resultado;
     }
    
 
     public String traduccions(String[] palabras, Association<EstructuraArbol<String>,EstructuraArbol<String>> arbolIdioma, int opcion){
         String traduccion = "";
+        if(opcion == 1){
+            
+
             for (String palabra : palabras) {
-                if(arbolIdioma.getKey().get(palabra).contains("*")){
+                String a = arbolIdioma.getKey().get(palabra);
+                if(arbolIdioma.getKey().get(palabra) != null){
                     traduccion = traduccion + arbolIdioma.getKey().get(palabra) + " "; 
                 } else {
-                    String word = arbolIdioma.getKey().get(palabra);
+                    String word =palabra;
                     String[] words = word.split(",");
 
-                    traduccion = traduccion + words[opcion] + " ";
+                    traduccion = traduccion + palabra + " ";
                 }
 
             }
+            
+        }
+        else if(opcion == 2){
+            for (String palabra : palabras) {
+                String a = arbolIdioma.getKey().get(palabra);
+                if(arbolIdioma.getKey().get(palabra) != null){
+                    traduccion = traduccion + arbolIdioma.getKey().get(palabra) + " "; 
+                } else {
+                    String word =palabra;
+                    String[] words = word.split(",");
+
+                    traduccion = traduccion + palabra + " ";
+                }
+
+            }
+            
+        }
+
+        
        
         return traduccion;
     }
